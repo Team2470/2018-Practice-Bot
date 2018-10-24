@@ -17,6 +17,7 @@
 #include <iostream>
 
 //FIRST Includes
+#include <DriverStation.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include <Timer.h>
 #include <Solenoid.h>
@@ -70,15 +71,17 @@ class PracticeRobot : public frc::SampleRobot
 			bool halfSpeed = false;
 			halfSpeed = LeftButtonHub.GetRawButton(Generic_Controller_Left::SWITCH_A);
 
-			if (halfSpeed)
+			if (halfSpeed)	//not working for some reason, maybe connection problems.
 			{
 				m_driveSystem->motorMultiplier = 0.5;
 				SmartDashboard::PutString("DB/String 0", "Motors at HALF speed");
+				//std::cout << "on" << std::endl;
 			}
 			else
 			{
 				m_driveSystem->motorMultiplier = 1.0;
 				SmartDashboard::PutString("DB/String 0", "Motors at FULL speed");
+				//std::cout << "off" << std::endl;
 			}
 
 			//Drive system
@@ -133,6 +136,7 @@ class PracticeRobot : public frc::SampleRobot
 			//Channels for the PWM motors on the roboRIO
 			LEFT_DRIVE = 0,
 			RIGHT_DRIVE = 1,
+			OTHER_MOTOR = 2
 		};
 
 		enum Channel_Solenoid
@@ -168,4 +172,4 @@ class PracticeRobot : public frc::SampleRobot
 		bool solenoidState = false;
 
 };
-START_ROBOT_CLASS(Robot)
+START_ROBOT_CLASS(PracticeRobot)
